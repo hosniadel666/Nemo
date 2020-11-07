@@ -1,0 +1,5 @@
+geometry_msgs/Vector3 current_pos
+geometry_msgs/Vector3 target_pos
+---
+string v_traj
+string r_traj

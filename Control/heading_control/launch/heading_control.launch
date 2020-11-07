@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="heading_control" type="heading_control" name="heading_control" output="screen">
+    <param name="desired_heading" value="0.0" />
+    <param name="error_tolerance" value="6.0" />
+  </node>
+</launch>

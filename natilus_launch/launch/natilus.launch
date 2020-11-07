@@ -1,0 +1,10 @@
+<?xml version='1.0'?>
+
+<launch> 
+	
+	<include file="$(find HW-SW-Interfacing)/launch/sensors.launch" /> 
+	<include file="$(find perception)/launch/perception.launch" /> 
+	<include file="$(find control)/launch/control.launch" />
+	<include file="$(find slam)/launch/slam.launch" />  
+	<include file="$(find HW-SW-Interfacing)/launch/actuator.launch" /> 
+</launch>
