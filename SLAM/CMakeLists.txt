@@ -54,6 +54,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    filteredData.msg
    trajData.msg
+   stateCovar.msg
  )
 
 ## Generate services in the 'srv' folder

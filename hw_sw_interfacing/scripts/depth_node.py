@@ -11,7 +11,7 @@ class Pressure(object):
 	def __init__(self):
 		rospy.init_node("Depth_node")
 		self.pub = rospy.Publisher("/nemo/depth", DEPTH, queue_size=1)
-		self.pub2 = rospy.Publisher("/test", Float32MultiArray, queue_size=1)
+		#self.pub2 = rospy.Publisher("/test", Float32MultiArray, queue_size=1)
 
 	   	self.depth_data = DEPTH()
 	   	self.rate = rospy.Rate(10) # 10hz

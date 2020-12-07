@@ -11,7 +11,7 @@ class PerceptionModule(object):
 		# OpenCV Bridge
 		self.bridge = CvBridge()
 		rospy.init_node('Perception_node')
-		self.pub1 = rospy.Publisher("/nemo/mission", Image, queue_size=1)
+
 		# Subscribers
 		sub1 = rospy.Subscriber('/usb_cam_node/image_raw', Image, self.perception_cb) 
 
@@ -22,7 +22,7 @@ class PerceptionModule(object):
 		print("Received Image.")
 		#rospy.loginfo("Received Image.")
 		#do some processing on the image and publish data to slam module (ekf)
-		self.pub1.publish(msg)
+
 
 
 

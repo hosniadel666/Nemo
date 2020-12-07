@@ -1,6 +1,8 @@
+#!/usr/bin/env python
 import rospy
 from slam.msg import filteredData
 from slam.msg import trajData
+from slam.msg import stateCovar
 from slam.srv import path
 from slam.srv import pathRequest
 from slam.srv import pathResponse
@@ -21,15 +23,15 @@ class mission_planning():
         self.d.z = 3
 
         rospy.init_node('mission_planning')
-
-        rospy.Subscriber("ekf_data", filteredData, self.feedback_callback)
-        #self.pub = rospy.Publisher('targets', target_data, queue_size=10)
+        rospy.Subscriber("state_covariance", stateCovar, self.stateCovar_callback)
+        #rospy.Subscriber("ekf_data", filteredData, self.feedback_callback)
         self.pub = rospy.Publisher('trajectory', trajData, queue_size=10)
         self.rate = rospy.Rate(10) # 10hz
-        #self.pub = rospy.Publisher('targets', target_data, queue_size=10)
         self.control_msg = trajData()
         rospy.spin()
 
+    def stateCovar_callback(self):
+        pass
     def feedback_callback(self, data):
 
         #extract states and state variance
@@ -43,8 +45,16 @@ class mission_planning():
         # and returns trajectory
         #and publish this trajectory to the respective control node
         #according to the perception variance, object is detected or not
-
         rospy.wait_for_service('path_planning_service')
+        try:
+            trajectory = rospy.ServiceProxy('path_planning_service', path)
+            traj = trajectory(self.c, self.d)
+            return traj.v_traj, traj.r_traj
+        except rospy.ServiceException, e:
+            print "Service call failed: %s"%e
+        '''
+        rospy.wait_for_service('path_planning_service')
+        
         try:
             path_fn = rospy.ServiceProxy('path_planning_service', path)
             traj = path_fn(self.c, self.d)
@@ -53,6 +63,7 @@ class mission_planning():
             self.pub.publish(control_msg)
         except rospy.ServiceException, e:
             print "Service call Failed : %s" %e    
+        '''
 
 
 

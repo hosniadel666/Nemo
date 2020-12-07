@@ -1,7 +1,4 @@
 <?xml version='1.0'?>
 
-<launch> 
-  <node pkg="hw-sw-Interfacing" name="thruster_coprocessor_driver.py" type="thruster_coprocessor_driver.py" />
 
-  <!-- if there is a gripper run its node -->
 </launch>

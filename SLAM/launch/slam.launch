@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+
+<launch> 
+
+    <!-- launch DVL or Sonar-->
+    <node pkg="slam" name="slam_node" type="slam_node.py" >
+    </node>
+    <!-- launch DVL or Sonar-->
+    <node pkg="slam" name="mission_planner" type="mission_plan_node.py" >
+    </node>
+    <!-- launch DVL or Sonar-->
+    <node pkg="slam" name="path_planning" type="path_plan_node.py" >
+    </node>
+
+
+
+
+</launch>

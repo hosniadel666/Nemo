@@ -1,24 +1,24 @@
 #!/usr/bin/env python
+
 import rospy
 import numpy as np
 from sensor_msgs.msg import Image
 from slam.msg import filteredData
+from slam.msg import stateCovar
 from hw_sw_interfacing.msg import IMU
 from hw_sw_interfacing.msg import DVL
 from hw_sw_interfacing.msg import DEPTH
-#from sw_hw.msg import IMU_data
-#from sw_hw.msg import dvl_data
-#from sw_hw.msg import mission_loc
 
 
 class slam:
     def __init__(self):
         rospy.init_node('slam_node')
+        self.pubs = rospy.Publisher('state_covariance', stateCovar, queue_size=10)
         self.pubs = rospy.Publisher('ekf_data', filteredData, queue_size=10)
         rospy.Subscriber("/nemo/imu", IMU, self.imu_callback)
         rospy.Subscriber("/nemo/depth", DEPTH, self.depth_callback)
         rospy.Subscriber("/nemo/dvl", DVL, self.dvl_callback)
-        rospy.Subscriber("/usb_cam_node/image_raw", Image, self.percept_callback)
+        rospy.Subscriber("/nemo/mission", Image, self.percept_callback)
         self.rate = rospy.Rate(10) # 10hz    
         self.filteredData = filteredData()
         while not rospy.is_shutdown():
@@ -48,8 +48,8 @@ class slam:
         pass
         #self.msg1.orientation = data.perception
 
-slam()
-"""
+
+
 if __name__ == "__main__":
     try:
         slam()
@@ -57,4 +57,3 @@ if __name__ == "__main__":
     except rospy.ROSInterruptException:
         rospy.logerr('could not start')
        
-"""

@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+
+<launch> 
+
+    <node pkg="control" name="depth_control" type="depth_st_control.py" >
+    </node>
+    <node pkg="control" name="traj_control" type="traj_control.py" >
+    </node>
+    <node pkg="control" name="control_cominator" type="control_cominator.py" >
+    </node>
+    
+
+
+
+</launch>

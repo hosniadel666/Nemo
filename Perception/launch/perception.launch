@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 
 <launch> 
-  <node pkg="perception" name="PerciptionModule" type="PerciptionModule.py" >
+  <node pkg="perception" name="PerciptionModule" type="PerciptionModule.py" output = "screen">
   </node>
 </launch>

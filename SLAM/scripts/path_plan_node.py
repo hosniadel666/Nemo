@@ -1,7 +1,6 @@
-import rospy
-#from sw_hw.msg import filtered_data
-#from sw_hw.msg import trajectory_data
+#!/usr/bin/env python
 
+import rospy
 from slam.srv import path
 from slam.srv import pathRequest
 from slam.srv import pathResponse
